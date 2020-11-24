@@ -1,1 +1,1 @@
-# Colour-Picker-Component
+# Colour Picker Component

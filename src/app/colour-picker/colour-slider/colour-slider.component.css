@@ -1,0 +1,9 @@
+.colour-picker--slider:hover {
+    cursor: pointer;
+}
+
+.colour-picker--slider {
+    margin: 10px;
+    border-radius: 3px;
+    overflow: hidden;
+}

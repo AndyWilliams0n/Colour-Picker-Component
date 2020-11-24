@@ -1,0 +1,7 @@
+<div class="colour-picker--container">
+    <cp-colour-palette [height]="height" [width]="width"   [hue]="hue"   (colour)="changesMadeToPalette($event)"></cp-colour-palette>
+
+    <cp-colour-slider [height]="height"   (colour)="changesMadeToSlider($event)"></cp-colour-slider>
+
+    <cp-colour-details [height]="height"   [hex]="hex"   [r]="r" [g]="g" [b]="b" [a]="a"></cp-colour-details>
+</div>
