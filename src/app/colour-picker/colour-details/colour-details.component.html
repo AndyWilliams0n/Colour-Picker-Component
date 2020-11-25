@@ -1,36 +1,13 @@
 <div class="colour-picker--details" [style.height]="height + 'px'" [style.width]="width + 'px'">
-    <div class="colour-picker--preview" [style.background-color]="hex"></div>
+    <div class="colour-picker--preview" [style.background-color]="coloursService.hex"></div>
 
     <div class="colour-picker--data">
-        <p><strong>#</strong> : <input type="text" [(ngModel)]="hex" /></p>
+        <p><strong>#</strong> : <input type="text" [(ngModel)]="coloursService.hex" (keyup)="setHex(coloursService.hex)" /></p>
 
-        <p><strong>R</strong> : <input type="text" [(ngModel)]="r" /></p>
-        <p><strong>G</strong> : <input type="text" [(ngModel)]="g" /></p>
-        <p><strong>B</strong> : <input type="text" [(ngModel)]="b" /></p>
+        <p><strong>R</strong> : <input class="" type="text" [(ngModel)]="coloursService.r" disabled /></p>
+        <p><strong>G</strong> : <input class="" type="text" [(ngModel)]="coloursService.g" disabled /></p>
+        <p><strong>B</strong> : <input class="" type="text" [(ngModel)]="coloursService.b" disabled /></p>
 
-        <div class="colour-picker--preset-colour pink"></div>
-        <div class="colour-picker--preset-colour darker-pink"></div>
-        <div class="colour-picker--preset-colour yellow"></div>
-        <div class="colour-picker--preset-colour darker-yellow"></div>
-        <div class="colour-picker--preset-colour red"></div>
-        <div class="colour-picker--preset-colour darker-red"></div>
-        <div class="colour-picker--preset-colour cyan"></div>
-        <div class="colour-picker--preset-colour darker-cyan"></div>
-        <div class="colour-picker--preset-colour green"></div>
-        <div class="colour-picker--preset-colour darker-green"></div>
-
-        <div class="colour-picker--preset-colour jade"></div>
-        <div class="colour-picker--preset-colour darker-jade"></div>
-        <div class="colour-picker--preset-colour blue"></div>
-        <div class="colour-picker--preset-colour darker-blue"></div>
-        <div class="colour-picker--preset-colour purple"></div>
-        <div class="colour-picker--preset-colour darker-purple"></div>
-        <div class="colour-picker--preset-colour light-grey"></div>
-        <div class="colour-picker--preset-colour darker-light-grey"></div>
-        <div class="colour-picker--preset-colour dark-grey"></div>
-        <div class="colour-picker--preset-colour darker-dark-grey"></div>
-
-        <div class="colour-picker--preset-colour white"></div>
-        <div class="colour-picker--preset-colour black"></div>
+        <div *ngFor="let colour of coloursService.preselectedColours" class="colour-picker--preselected-colour" [class.border]="colour.hasBorder" [style.background-color]="colour.hex" (click)="setHex(colour.hex)"></div>
     </div>
 </div>

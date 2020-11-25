@@ -1,9 +1,0 @@
-.colour-picker--palette:hover {
-    cursor: pointer;
-}
-
-.colour-picker--palette {
-    margin: 10px;
-    border-radius: 3px;
-    overflow: hidden;
-}

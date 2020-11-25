@@ -3,25 +3,24 @@ import {Component, AfterViewInit, ViewChild, ElementRef, Output, HostListener, E
 @Component({
     selector: 'cp-colour-slider',
     templateUrl: './colour-slider.component.html',
-    styleUrls: ['./colour-slider.component.css']
+    styleUrls: ['./colour-slider.component.scss']
 })
 
 export class ColourSliderComponent implements AfterViewInit {
     @Input() width = 40;
     @Input() height = 400;
-
     @Output() colour: EventEmitter<string> = new EventEmitter();
-
     @ViewChild('colourSliderCanvas') canvas: ElementRef<HTMLCanvasElement>;
 
     private ctx: CanvasRenderingContext2D;
-
     private mousedown = false;
     private selectedHeight: number;
 
     ngAfterViewInit() {
         this.draw();
     }
+
+    //
 
     draw() {
         if (!this.canvas) {
@@ -50,6 +49,8 @@ export class ColourSliderComponent implements AfterViewInit {
         this.ctx.fill();
         this.ctx.closePath();
 
+        // Pointer
+
         // if (this.selectedHeight) {
         //     this.ctx.beginPath();
         //     this.ctx.strokeStyle = 'black';
@@ -74,7 +75,7 @@ export class ColourSliderComponent implements AfterViewInit {
 
         this.draw();
 
-        this.emitColor(event.offsetX, event.offsetY);
+        this.emitColour(event.offsetX, event.offsetY);
     }
 
     onMouseMove(event: MouseEvent) {
@@ -83,19 +84,17 @@ export class ColourSliderComponent implements AfterViewInit {
 
             this.draw();
 
-            this.emitColor(event.offsetX, event.offsetY);
+            this.emitColour(event.offsetX, event.offsetY);
         }
     }
 
     //
 
-    emitColor(x: number, y: number) {
-        this.colour.emit(this.getColorAtPosition(x, y));
+    emitColour(x: number, y: number) {
+        this.colour.emit(this.getColourAtPosition(x, y));
     }
 
-    //
-
-    getColorAtPosition(x: number, y: number) {
+    getColourAtPosition(x: number, y: number) {
         const imageData = this.ctx.getImageData(x, y, 1, 1).data;
 
         return 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';

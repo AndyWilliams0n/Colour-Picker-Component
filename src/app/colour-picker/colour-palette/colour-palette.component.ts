@@ -3,16 +3,14 @@ import {Component, ViewChild, AfterViewInit, ElementRef, Input, Output, SimpleCh
 @Component({
     selector: 'cp-colour-palette',
     templateUrl: './colour-palette.component.html',
-    styleUrls: ['./colour-palette.component.css']
+    styleUrls: ['./colour-palette.component.scss']
 })
 
 export class ColourPaletteComponent implements AfterViewInit, OnChanges {
     @Input() hue: string;
     @Input() width = 400;
     @Input() height = 400;
-
     @Output() colour: EventEmitter<string> = new EventEmitter(true);
-
     @ViewChild('colourPaletteCanvas') canvas: ElementRef<HTMLCanvasElement>;
 
     private ctx: CanvasRenderingContext2D;
@@ -21,6 +19,8 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
         x: number;
         y: number;
     };
+
+    //
 
     ngAfterViewInit() {
         this.draw();
@@ -33,10 +33,12 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
             const position = this.selectedPosition;
 
             if (position) {
-                this.colour.emit(this.getColorAtPosition(position.x, position.y));
+                this.colour.emit(this.getColourAtPosition(position.x, position.y));
             }
         }
     }
+
+    //
 
     draw() {
         if (!this.canvas) {
@@ -100,7 +102,7 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
 
         this.draw();
 
-        this.emitColor(event.offsetX, event.offsetY);
+        this.emitColour(event.offsetX, event.offsetY);
     }
 
     onMouseMove(event: MouseEvent) {
@@ -112,19 +114,17 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
 
             this.draw();
 
-            this.emitColor(event.offsetX, event.offsetY);
+            this.emitColour(event.offsetX, event.offsetY);
         }
     }
 
     //
 
-    emitColor(x: number, y: number) {
-        this.colour.emit(this.getColorAtPosition(x, y));
+    emitColour(x: number, y: number) {
+        this.colour.emit(this.getColourAtPosition(x, y));
     }
 
-    //
-
-    getColorAtPosition(x: number, y: number) {
+    getColourAtPosition(x: number, y: number) {
         const imageData = this.ctx.getImageData(x, y, 1, 1).data;
 
         return 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ', 1)';

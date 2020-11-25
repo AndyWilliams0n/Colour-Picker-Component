@@ -9,6 +9,8 @@ import {ColourPaletteComponent} from './colour-palette/colour-palette.component'
 import {ColourSliderComponent} from './colour-slider/colour-slider.component';
 import {ColourDetailsComponent} from './colour-details/colour-details.component';
 
+import {ColoursService} from './services/colours.service';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -24,6 +26,9 @@ import {ColourDetailsComponent} from './colour-details/colour-details.component'
         ColourSliderComponent,
         ColourDetailsComponent
     ],
+    providers: [
+        ColoursService
+    ]
 })
 
 export class ColourPickerModule {}

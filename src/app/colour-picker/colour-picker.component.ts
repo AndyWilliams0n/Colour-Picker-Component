@@ -1,69 +1,52 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {RGBToHex} from './functions/conversion.functions';
+import {ColoursService} from './services/colours.service';
 
-export interface ColourData {
-    hex: string;
-    rgba: string;
-}
+import {ColourData} from './models/colours.model';
 
 @Component({
     selector: 'cp-colour-picker',
     templateUrl: './colour-picker.component.html',
-    styleUrls: ['./colour-picker.component.css']
+    styleUrls: ['./colour-picker.component.scss']
 })
 
 export class ColourPickerComponent {
     @Input() width = 440;
     @Input() height = 440;
-
-    @Output() colours: EventEmitter<ColourData> = new EventEmitter(true);
-
-    public hue: string;
-
-    public colour: string;
-    public hex: string;
-
-    public r: number;
-    public g: number;
-    public b: number;
-    public a: number;
+    @Output() colour: EventEmitter<ColourData> = new EventEmitter(true);
 
     //
 
-    changesMadeToPalette(rgb) {
-        this.splitRGB(rgb);
+    constructor(
+        public coloursService: ColoursService
+    ) {}
 
-        this.colour = rgb;
-        this.hex = RGBToHex(this.r, this.g, this.b);
+    //
 
-        this.changesMade(this.hex, this.colour);
+    onChangesMadeToPalette(rgba: string) {
+        this.coloursService.rgba = rgba;
+        this.coloursService.splitRGB(rgba);
+        this.coloursService.hex = RGBToHex(this.coloursService.r, this.coloursService.g, this.coloursService.b);
+
+        this.emitColour(this.coloursService.hex, this.coloursService.rgba);
     }
 
-    changesMadeToSlider(rgb) {
-        this.hue = rgb;
+    onChangesMadeToSlider(hue: string) {
+        this.coloursService.hue = hue;
     }
 
-    changesMade(hex, rgba) {
-        this.colours.emit({
+    onChangesMadeToDetails() {
+        this.emitColour(this.coloursService.hex, this.coloursService.rgba);
+    }
+
+    emitColour(hex, rgba) {
+        this.colour.emit({
             hex: hex,
             rgba: rgba
         });
-    }
 
-    //
-
-    splitRGB(rgba: string = '') {
-        rgba = rgba.replace('rgba', '');
-        rgba = rgba.replace('rgb', '');
-        rgba = rgba.replace('(', '');
-        rgba = rgba.replace(')', '');
-
-        const rgbSplit = rgba.split(',');
-
-        this.r = parseInt(rgbSplit[0]);
-        this.g = parseInt(rgbSplit[1]);
-        this.b = parseInt(rgbSplit[2]);
-        this.a = parseInt(rgbSplit[3]);
+        // LOG
+        console.log('COLOURS');
     }
 }
