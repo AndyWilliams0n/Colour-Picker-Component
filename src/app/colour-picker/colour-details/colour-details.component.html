@@ -1,13 +1,17 @@
 <div class="colour-picker--details" [style.height]="height + 'px'" [style.width]="width + 'px'">
-    <div class="colour-picker--preview" [style.background-color]="coloursService.hex"></div>
+    <div class="colour-picker--preview" [style.background-color]="'#'+ coloursService.hex">
+        <span class="colour-picker--preview-text">selected</span>
+    </div>
 
     <div class="colour-picker--data">
-        <p><strong>#</strong> : <input type="text" [(ngModel)]="coloursService.hex" (keyup)="setHex(coloursService.hex)" /></p>
+        <p><strong>#</strong> : <input type="text" maxlength="6" [(ngModel)]="coloursService.hex" (keyup)="setHex(coloursService.hex)" /></p>
 
-        <p><strong>R</strong> : <input class="" type="text" [(ngModel)]="coloursService.r" disabled /></p>
-        <p><strong>G</strong> : <input class="" type="text" [(ngModel)]="coloursService.g" disabled /></p>
-        <p><strong>B</strong> : <input class="" type="text" [(ngModel)]="coloursService.b" disabled /></p>
+        <p><strong>R</strong> : <input type="text" [(ngModel)]="coloursService.r" disabled /></p>
+        <p><strong>G</strong> : <input type="text" [(ngModel)]="coloursService.g" disabled /></p>
+        <p><strong>B</strong> : <input type="text" [(ngModel)]="coloursService.b" disabled /></p>
+    </div>
 
-        <div *ngFor="let colour of coloursService.preselectedColours" class="colour-picker--preselected-colour" [class.border]="colour.hasBorder" [style.background-color]="colour.hex" (click)="setHex(colour.hex)"></div>
+    <div class="colour-picker--colours">
+        <div *ngFor="let colour of coloursService.preselectedColours" class="colour-picker--preselected-colour" [class.border]="colour.hasBorder" [style.background-color]="'#'+ colour.hex" (click)="setHex(colour.hex)"></div>
     </div>
 </div>

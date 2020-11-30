@@ -8,7 +8,7 @@ import {Component, AfterViewInit, ViewChild, ElementRef, Output, HostListener, E
 
 export class ColourSliderComponent implements AfterViewInit {
     @Input() width = 40;
-    @Input() height = 400;
+    @Input() height = 380;
     @Output() colour: EventEmitter<string> = new EventEmitter();
     @ViewChild('colourSliderCanvas') canvas: ElementRef<HTMLCanvasElement>;
 

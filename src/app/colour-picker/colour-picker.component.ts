@@ -12,8 +12,8 @@ import {ColourData} from './models/colours.model';
 })
 
 export class ColourPickerComponent {
-    @Input() width = 440;
-    @Input() height = 440;
+    @Input() width = 380;
+    @Input() height = 380;
     @Output() colour: EventEmitter<ColourData> = new EventEmitter(true);
 
     //
@@ -42,7 +42,7 @@ export class ColourPickerComponent {
 
     emitColour(hex, rgba) {
         this.colour.emit({
-            hex: hex,
+            hex: '#' + hex,
             rgba: rgba
         });
 

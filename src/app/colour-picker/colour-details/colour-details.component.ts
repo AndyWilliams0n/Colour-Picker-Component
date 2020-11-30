@@ -2,8 +2,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {ColoursService} from '../services/colours.service';
 
-import {SelectedColours} from '../models/colours.model';
-
 @Component({
     selector: 'cp-colour-details',
     templateUrl: './colour-details.component.html',
@@ -12,7 +10,7 @@ import {SelectedColours} from '../models/colours.model';
 
 export class ColourDetailsComponent {
     @Input() width = 200;
-    @Input() height = 400;
+    @Input() height = 380;
     @Output() colour: EventEmitter<string> = new EventEmitter(true);
 
     //

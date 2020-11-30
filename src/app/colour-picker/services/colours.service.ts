@@ -9,115 +9,119 @@ export class ColoursService {
     public rgba = '';
     public hex = '';
 
-    public r = null;
-    public g = null;
-    public b = null;
-    public a = null;
+    public r = 0;
+    public g = 0;
+    public b = 0;
+    public a = 1;
 
     public preselectedColours: SelectedColours[] = [{
         name: 'pink',
-        hex: '#ff9ff3',
+        hex: 'ff9ff3',
         hasBorder: false
     }, {
         name: 'darker-pink',
-        hex: '#f368e0',
+        hex: 'f368e0',
         hasBorder: false
     }, {
         name: 'yellow',
-        hex: '#feca57',
+        hex: 'feca57',
         hasBorder: false
     }, {
         name: 'darker-yellow',
-        hex: '#ff9f43',
+        hex: 'ff9f43',
         hasBorder: false
     }, {
         name: 'red',
-        hex: '#ff6b6b',
+        hex: 'ff6b6b',
         hasBorder: false
     }, {
         name: 'darker-red',
-        hex: '#ee5253',
+        hex: 'ee5253',
         hasBorder: false
     }, {
         name: 'cyan',
-        hex: '#48dbfb',
+        hex: '48dbfb',
         hasBorder: false
     }, {
         name: 'darker-cyan',
-        hex: '#0abde3',
+        hex: '0abde3',
         hasBorder: false
     }, {
         name: 'green',
-        hex: '#1dd1a1',
+        hex: '1dd1a1',
         hasBorder: false
     }, {
         name: 'darker-green',
-        hex: '#10ac84',
+        hex: '10ac84',
         hasBorder: false
     }, {
 
         name: 'jade',
-        hex: '#00d2d3',
+        hex: '00d2d3',
         hasBorder: false
     }, {
         name: 'darker-jade',
-        hex: '#01a3a4',
+        hex: '01a3a4',
         hasBorder: false
     }, {
         name: 'blue',
-        hex: '#54a0ff',
+        hex: '54a0ff',
         hasBorder: false
     }, {
         name: 'darker-blue',
-        hex: '#2e86de',
+        hex: '2e86de',
         hasBorder: false
     }, {
         name: 'purple',
-        hex: '#5f27cd',
+        hex: '5f27cd',
         hasBorder: false
     }, {
         name: 'darker-purple',
-        hex: '#341f97',
+        hex: '341f97',
         hasBorder: false
     }, {
         name: 'light-grey',
-        hex: '#c8d6e5',
+        hex: 'c8d6e5',
         hasBorder: false
     }, {
         name: 'darker-light-grey',
-        hex: '#8395a7',
+        hex: '8395a7',
         hasBorder: false
     }, {
         name: 'dark-grey',
-        hex: '#576574',
+        hex: '576574',
         hasBorder: false
     }, {
         name: 'darker-dark-grey',
-        hex: '#222f3e',
+        hex: '222f3e',
         hasBorder: false
     }, {
 
         name: 'White',
-        hex: '#FFF',
+        hex: 'FFFFFF',
         hasBorder: true
     }, {
         name: 'Black',
-        hex: '#000',
+        hex: '000000',
         hasBorder: false
     }];
 
     setPreselectedHex(hex: string) {
-        this.hex = hex;
-        this.rgba = HexToRGB(hex);
-        this.splitRGB(this.rgba);
+        this.hue = '';
+
+        setTimeout(() => {
+            this.hex = hex;
+            this.rgba = HexToRGB(hex);
+            this.splitRGB(this.rgba);
+        }, 10);
     }
 
     splitRGB(rgba: string = '') {
         const split = RGBToArray(rgba);
 
-        this.r = parseInt(split[0]) || null;
-        this.g = parseInt(split[1]) || null;
-        this.b = parseInt(split[2]) || null;
-        this.a = parseInt(split[3]) || null;
+        this.r = parseInt(split[0]) || 0;
+        this.g = parseInt(split[1]) || 0;
+        this.b = parseInt(split[2]) || 0;
+        this.a = parseInt(split[3]) || 0;
     }
 }

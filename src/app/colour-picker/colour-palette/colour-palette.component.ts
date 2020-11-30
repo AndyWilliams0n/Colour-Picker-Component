@@ -8,8 +8,8 @@ import {Component, ViewChild, AfterViewInit, ElementRef, Input, Output, SimpleCh
 
 export class ColourPaletteComponent implements AfterViewInit, OnChanges {
     @Input() hue: string;
-    @Input() width = 400;
-    @Input() height = 400;
+    @Input() width = 380;
+    @Input() height = 380;
     @Output() colour: EventEmitter<string> = new EventEmitter(true);
     @ViewChild('colourPaletteCanvas') canvas: ElementRef<HTMLCanvasElement>;
 
