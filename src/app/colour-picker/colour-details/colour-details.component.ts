@@ -22,7 +22,14 @@ export class ColourDetailsComponent {
     //
 
     setHex(hex: string) {
-        this.coloursService.setPreselectedHex(hex);
-        this.colour.next();
+        this.coloursService.hue = '';
+
+        setTimeout(() => {
+            this.coloursService.setPreselectedHex(hex);
+
+            setTimeout(() => {
+                this.colour.next();
+            }, 10);
+        }, 10);
     }
 }

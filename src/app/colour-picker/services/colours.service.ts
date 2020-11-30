@@ -107,13 +107,9 @@ export class ColoursService {
     }];
 
     setPreselectedHex(hex: string) {
-        this.hue = '';
-
-        setTimeout(() => {
-            this.hex = hex;
-            this.rgba = HexToRGB(hex);
-            this.splitRGB(this.rgba);
-        }, 10);
+        this.hex = hex;
+        this.rgba = HexToRGB(hex);
+        this.splitRGB(this.rgba);
     }
 
     splitRGB(rgba: string = '') {
