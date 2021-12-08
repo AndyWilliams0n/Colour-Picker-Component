@@ -1,0 +1,9 @@
+<div class="colour-picker__details-mini" [style.width]="width + 'px'">
+    <div class="colour-picker__details-mini--data">
+        <p><strong>HEX#</strong> : <input type="text"
+                                          maxlength="6"
+                                          [style.width]="(width - 110) + 'px'"
+                                          [(ngModel)]="coloursService.hex"
+                                          (keyup)="setHex(coloursService.hex)" /></p>
+    </div>
+</div>

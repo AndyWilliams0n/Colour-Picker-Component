@@ -1,7 +1,18 @@
-<div class="colour-picker--container">
-    <cp-colour-palette [height]="height" [width]="width" [hue]="coloursService.hue" (colour)="onChangesMadeToPalette($event)"></cp-colour-palette>
+<div class="colour-picker--container" [class.colour-picker--responsive]="isResponsive">
+    <cp-colour-palette [height]="height"
+                       [width]="width"
+                       [hue]="coloursService.hue"
+                       (colour)="onChangesMadeToPalette($event)"></cp-colour-palette>
 
-    <cp-colour-slider [height]="height" (colour)="onChangesMadeToSlider($event)"></cp-colour-slider>
+    <cp-colour-slider [height]="height"
+                      (colour)="onChangesMadeToSlider($event)"></cp-colour-slider>
 
-    <cp-colour-details [height]="height" (colour)="onChangesMadeToDetails()"></cp-colour-details>
+    <cp-colour-details [height]="selectHeight"
+                       [width]="selectWidth"
+                       [hasColourSelect]="hasColourSelect"
+                       (colour)="onChangesMadeToDetails()"></cp-colour-details>
+
+    <cp-colour-details-mini [width]="selectMiniWidth"
+                            (colour)="onChangesMadeToDetails()"
+                            *ngIf="!hasColourSelect"></cp-colour-details-mini>
 </div>

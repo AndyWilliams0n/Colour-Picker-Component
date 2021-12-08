@@ -1,10 +1,12 @@
 .colour-picker {
     &--details {
         display: inline-block;
-        margin: 0 10px 10px 0;
+        margin: 0;
+        margin-left: 10px;
+        margin-bottom: 4px;
         padding: 0;
         border-radius: 3px;
-        box-shadow: inset 0 0 0 1px #eee;
+        box-shadow: inset 0 0 0 1px #EEE;
 
         overflow: hidden;
 
@@ -22,7 +24,7 @@
             line-height: 25px;
             font-size: 16px;
             padding: 0 5px;
-            border: 1px solid #999;
+            border: 1px solid #BBB;
             border-radius: 3px;
 
             float: right;
@@ -85,5 +87,12 @@
         &.border {
             box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .colour-picker--responsive .colour-picker--details {
+        width: 100% !important;
+        margin-left: 0 !important;
     }
 }

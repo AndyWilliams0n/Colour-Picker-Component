@@ -1,9 +1,22 @@
-import {Component, ViewChild, AfterViewInit, ElementRef, Input, Output, SimpleChanges, OnChanges, HostListener, EventEmitter} from '@angular/core';
+import {
+    Component,
+    ViewChild,
+    AfterViewInit,
+    ElementRef,
+    Input,
+    Output,
+    SimpleChanges,
+    OnChanges,
+    HostListener,
+    EventEmitter,
+    ViewEncapsulation
+} from '@angular/core';
 
 @Component({
     selector: 'cp-colour-palette',
     templateUrl: './colour-palette.component.html',
-    styleUrls: ['./colour-palette.component.scss']
+    styleUrls: ['./colour-palette.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ColourPaletteComponent implements AfterViewInit, OnChanges {

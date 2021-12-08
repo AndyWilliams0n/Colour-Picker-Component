@@ -1,7 +1,8 @@
 .colour-picker {
     &--palette {
         display: inline-block;
-        margin: 0 10px 10px 0;
+        margin: 0;
+        margin-bottom: 4px;
         padding: 0;
         border-radius: 3px;
 
@@ -10,5 +11,11 @@
         &:hover {
             cursor: pointer;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .colour-picker--responsive .colour-picker--palette {
+        display: none;
     }
 }

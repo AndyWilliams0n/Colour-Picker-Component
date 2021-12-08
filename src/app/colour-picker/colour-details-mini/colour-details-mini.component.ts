@@ -1,19 +1,15 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {ColoursService} from '../services/colours.service';
 
 @Component({
-    selector: 'cp-colour-details',
-    templateUrl: './colour-details.component.html',
-    styleUrls: ['./colour-details.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    selector: 'cp-colour-details-mini',
+    templateUrl: './colour-details-mini.component.html',
+    styleUrls: ['./colour-details-mini.component.scss']
 })
 
-export class ColourDetailsComponent {
+export class ColourDetailsMiniComponent {
     @Input() width = 200;
-    @Input() height = 380;
-    @Input() hasColourSelect = true;
-
     @Output() colour: EventEmitter<string> = new EventEmitter(true);
 
     //

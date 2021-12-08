@@ -6,4 +6,10 @@ import {Component} from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {}
+export class AppComponent {
+    public colour = '';
+
+    public setColours(colour: any) {
+        this.colour = colour;
+    }
+}

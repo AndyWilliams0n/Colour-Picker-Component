@@ -8,6 +8,7 @@ import {ColourPickerComponent} from './colour-picker.component';
 import {ColourPaletteComponent} from './colour-palette/colour-palette.component';
 import {ColourSliderComponent} from './colour-slider/colour-slider.component';
 import {ColourDetailsComponent} from './colour-details/colour-details.component';
+import {ColourDetailsMiniComponent} from './colour-details-mini/colour-details-mini.component';
 
 import {ColoursService} from './services/colours.service';
 
@@ -24,7 +25,8 @@ import {ColoursService} from './services/colours.service';
 
         ColourPaletteComponent,
         ColourSliderComponent,
-        ColourDetailsComponent
+        ColourDetailsComponent,
+        ColourDetailsMiniComponent
     ],
     providers: [
         ColoursService

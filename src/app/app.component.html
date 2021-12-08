@@ -1,1 +1,29 @@
-<cp-colour-picker></cp-colour-picker>
+<section class="container">
+    <h2>Large</h2>
+
+    <h5>Code:</h5>
+
+    <code>
+        &lt;cp-colour-picker width=&quot;380&quot; height=&quot;380&quot; selectWidth=&quot;200&quot; selectHeight=&quot;380&quot; (colour)=&quot;setColours($event)&quot;&gt;&lt;/cp-colour-picker&gt;
+    </code>
+
+    <h5>Example:</h5>
+
+    <cp-colour-picker width="380" height="380" selectWidth="200" selectHeight="380" (colour)="setColours($event)"></cp-colour-picker>
+
+    <h2>Small</h2>
+
+    <h5>Code:</h5>
+
+    <code>
+        &lt;cp-colour-picker width=&quot;100&quot; height=&quot;100&quot; selectWidth=&quot;100&quot; selectHeight=&quot;100&quot; selectMiniWidth=&quot;260&quot; [isResponsive]=&quot;false&quot; [hasColourSelect]=&quot;false&quot; (colour)=&quot;setColours($event)&quot;&gt;&lt;/cp-colour-picker&gt;
+    </code>
+
+    <h5>Example:</h5>
+
+    <cp-colour-picker width="100" height="100" selectWidth="100" selectHeight="100" selectMiniWidth="260" [isResponsive]="false" [hasColourSelect]="false" (colour)="setColours($event)"></cp-colour-picker>
+
+    <h5>Output</h5>
+
+    <p>{{colour | json}}</p>
+</section>

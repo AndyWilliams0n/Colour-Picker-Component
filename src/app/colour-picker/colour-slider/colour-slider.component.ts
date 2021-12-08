@@ -1,9 +1,10 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, Output, HostListener, EventEmitter, Input} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef, Output, HostListener, EventEmitter, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'cp-colour-slider',
     templateUrl: './colour-slider.component.html',
-    styleUrls: ['./colour-slider.component.scss']
+    styleUrls: ['./colour-slider.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ColourSliderComponent implements AfterViewInit {

@@ -6,5 +6,6 @@ export interface SelectedColours {
 
 export interface ColourData {
     hex: string;
+    rgb: string;
     rgba: string;
 }

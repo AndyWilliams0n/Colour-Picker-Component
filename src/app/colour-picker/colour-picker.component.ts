@@ -14,6 +14,12 @@ import {ColourData} from './models/colours.model';
 export class ColourPickerComponent {
     @Input() width = 380;
     @Input() height = 380;
+    @Input() selectWidth = 200;
+    @Input() selectHeight = 380;
+    @Input() selectMiniWidth = 640;
+    @Input() hasColourSelect = true;
+    @Input() isResponsive = true;
+
     @Output() colour: EventEmitter<ColourData> = new EventEmitter(true);
 
     //
@@ -27,9 +33,10 @@ export class ColourPickerComponent {
     onChangesMadeToPalette(rgba: string) {
         this.coloursService.rgba = rgba;
         this.coloursService.splitRGB(rgba);
+        this.coloursService.rgb = `rgb(${this.coloursService.r}, ${this.coloursService.g}, ${this.coloursService.b})`;
         this.coloursService.hex = RGBToHex(this.coloursService.r, this.coloursService.g, this.coloursService.b);
 
-        this.emitColour(this.coloursService.hex, this.coloursService.rgba);
+        this.emitColour(this.coloursService.hex, this.coloursService.rgb, this.coloursService.rgba);
     }
 
     onChangesMadeToSlider(hue: string) {
@@ -37,16 +44,14 @@ export class ColourPickerComponent {
     }
 
     onChangesMadeToDetails() {
-        this.emitColour(this.coloursService.hex, this.coloursService.rgba);
+        this.emitColour(this.coloursService.hex, this.coloursService.rgb, this.coloursService.rgba);
     }
 
-    emitColour(hex, rgba) {
+    emitColour(hex, rgb, rgba) {
         this.colour.emit({
             hex: '#' + hex,
+            rgb: rgb,
             rgba: rgba
         });
-
-        // LOG
-        console.log('COLOURS');
     }
 }

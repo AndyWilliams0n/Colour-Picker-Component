@@ -6,6 +6,7 @@ import {HexToRGB, RGBToArray} from '../functions/conversion.functions';
 
 export class ColoursService {
     public hue = '';
+    public rgb = '';
     public rgba = '';
     public hex = '';
 
@@ -108,7 +109,8 @@ export class ColoursService {
 
     setPreselectedHex(hex: string) {
         this.hex = hex;
-        this.rgba = HexToRGB(hex);
+        this.rgb = HexToRGB(hex, false);
+        this.rgba = HexToRGB(hex, true);
         this.splitRGB(this.rgba);
     }
 

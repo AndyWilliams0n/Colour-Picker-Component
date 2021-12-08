@@ -3,7 +3,7 @@
         <span class="colour-picker--preview-text">selected</span>
     </div>
 
-    <div class="colour-picker--data">
+    <div class="colour-picker--data" *ngIf="hasColourSelect">
         <p><strong>#</strong> : <input type="text" maxlength="6" [(ngModel)]="coloursService.hex" (keyup)="setHex(coloursService.hex)" /></p>
 
         <p><strong>R</strong> : <input type="text" [(ngModel)]="coloursService.r" disabled /></p>
@@ -11,7 +11,7 @@
         <p><strong>B</strong> : <input type="text" [(ngModel)]="coloursService.b" disabled /></p>
     </div>
 
-    <div class="colour-picker--colours">
+    <div class="colour-picker--colours" *ngIf="hasColourSelect">
         <div *ngFor="let colour of coloursService.preselectedColours" class="colour-picker--preselected-colour" [class.border]="colour.hasBorder" [style.background-color]="'#'+ colour.hex" (click)="setHex(colour.hex)"></div>
     </div>
 </div>
