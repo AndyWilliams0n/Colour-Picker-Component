@@ -27,7 +27,7 @@ export class ColourDetailsComponent {
     setKeyHex(hex: string) {
         if (this.coloursService.hex.length >= 6) {
             this.coloursService.hasBeenEntered = true;
-            this.coloursService.hue = '';
+            this.coloursService.pickedColour = '';
 
             setTimeout(() => {
                 this.coloursService.setPreselectedHex(hex);
@@ -40,7 +40,7 @@ export class ColourDetailsComponent {
 
     setHex(hex: string) {
         this.coloursService.hasBeenEntered = true;
-        this.coloursService.hue = '';
+        this.coloursService.pickedColour = '';
 
         setTimeout(() => {
             this.coloursService.setPreselectedHex(hex);

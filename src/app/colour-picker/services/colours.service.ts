@@ -5,7 +5,8 @@ import {HexToRGB, RGBToArray, RGBToHSL} from '../functions/conversion.functions'
 @Injectable()
 
 export class ColoursService {
-    public hue = '';
+    public pickedColour = '';
+
     public rgb = '';
     public rgba = '';
     public hex = '';
@@ -110,6 +111,7 @@ export class ColoursService {
         hex: '000000',
         hasBorder: false
     }];
+
     public hasBeenEntered = false;
 
     setPreselectedHex(hex: string) {
@@ -119,11 +121,7 @@ export class ColoursService {
         this.splitRGB(this.rgba);
         this.splitHSL(this.r, this.g, this.b);
 
-        this.hue = HexToRGB(hex, true);
-
-        // LOG
-        console.log(this.h, this.s, this.l);
-        console.log(this.hue);
+        this.pickedColour = HexToRGB(hex, true);
     }
 
     splitRGB(rgba: string = '') {

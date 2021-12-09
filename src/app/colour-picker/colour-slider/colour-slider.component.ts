@@ -1,4 +1,5 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, Output, HostListener, EventEmitter, Input, ViewEncapsulation} from '@angular/core';
+import {Component, SimpleChanges, OnChanges, AfterViewInit, ViewChild, ElementRef, Input, Output, HostListener, EventEmitter, ViewEncapsulation} from '@angular/core';
+import {ColoursService} from '../services/colours.service';
 
 @Component({
     selector: 'cp-colour-slider',
@@ -7,18 +8,40 @@ import {Component, AfterViewInit, ViewChild, ElementRef, Output, HostListener, E
     encapsulation: ViewEncapsulation.None
 })
 
-export class ColourSliderComponent implements AfterViewInit {
+export class ColourSliderComponent implements AfterViewInit, OnChanges {
     @Input() width = 40;
     @Input() height = 380;
+    @Input() pickedColour: string;
+
     @Output() colour: EventEmitter<string> = new EventEmitter();
+
     @ViewChild('colourSliderCanvas') canvas: ElementRef<HTMLCanvasElement>;
 
     private ctx: CanvasRenderingContext2D;
     private mousedown = false;
     private selectedHeight: number;
 
+    //
+
+    constructor(
+        public coloursService: ColoursService
+    ) {}
+
+    //
+
     ngAfterViewInit() {
         this.draw();
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (this.coloursService.hasBeenEntered) {
+            this.selectedHeight = undefined;
+            setTimeout(() => this.coloursService.hasBeenEntered = false, 100);
+        }
+
+        if (changes['pickedColour']) {
+            this.draw();
+        }
     }
 
     //
@@ -98,6 +121,6 @@ export class ColourSliderComponent implements AfterViewInit {
     getColourAtPosition(x: number, y: number) {
         const imageData = this.ctx.getImageData(x, y, 1, 1).data;
 
-        return 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
+        return `rgba(${imageData[0]},${imageData[1]},${imageData[2]},1)`;
     }
 }

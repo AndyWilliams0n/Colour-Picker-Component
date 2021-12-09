@@ -1,16 +1,4 @@
-import {
-    Component,
-    ViewChild,
-    AfterViewInit,
-    ElementRef,
-    Input,
-    Output,
-    SimpleChanges,
-    OnChanges,
-    HostListener,
-    EventEmitter,
-    ViewEncapsulation
-} from '@angular/core';
+import {Component, ViewChild, SimpleChanges, OnChanges, AfterViewInit, ElementRef, Input, Output, HostListener, EventEmitter, ViewEncapsulation} from '@angular/core';
 import {ColoursService} from '../services/colours.service';
 
 @Component({
@@ -21,7 +9,7 @@ import {ColoursService} from '../services/colours.service';
 })
 
 export class ColourPaletteComponent implements AfterViewInit, OnChanges {
-    @Input() hue: string;
+    @Input() pickedColour: string;
     @Input() width = 380;
     @Input() height = 380;
 
@@ -50,16 +38,12 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        // LOG
-        console.log(changes);
-        console.log(this.selectedPosition);
-
         if (this.coloursService.hasBeenEntered) {
             this.selectedPosition = undefined;
-            this.coloursService.hasBeenEntered = false;
+            setTimeout(() => this.coloursService.hasBeenEntered = false, 100);
         }
 
-        if (changes['hue']) {
+        if (changes['pickedColour']) {
             this.draw();
 
             const position = this.selectedPosition;
@@ -81,7 +65,7 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
             this.ctx = this.canvas.nativeElement.getContext('2d');
         }
 
-        this.ctx.fillStyle = this.hue || 'rgba(255, 255, 255, 1)';
+        this.ctx.fillStyle = this.pickedColour || 'rgba(255, 255, 255, 1)';
         this.ctx.fillRect(0, 0, this.width, this.height);
 
         const lightGradient = this.ctx.createLinearGradient(0, 0, this.width, 0);
@@ -159,6 +143,6 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
     getColourAtPosition(x: number, y: number) {
         const imageData = this.ctx.getImageData(x, y, 1, 1).data;
 
-        return 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ', 1)';
+        return `rgba(${imageData[0]},${imageData[1]},${imageData[2]},1)`;
     }
 }
