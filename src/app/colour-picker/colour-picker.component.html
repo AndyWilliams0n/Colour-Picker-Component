@@ -1,11 +1,12 @@
 <div class="colour-picker--container" [class.colour-picker--responsive]="isResponsive">
+    <cp-colour-slider [height]="height"
+                      [pickedColour]="coloursService.pickedColour"
+                      (colour)="onChangesMadeToSlider($event)"></cp-colour-slider>
+
     <cp-colour-palette [height]="height"
                        [width]="width"
-                       [hue]="coloursService.hue"
+                       [pickedColour]="coloursService.pickedColour"
                        (colour)="onChangesMadeToPalette($event)"></cp-colour-palette>
-
-    <cp-colour-slider [height]="height"
-                      (colour)="onChangesMadeToSlider($event)"></cp-colour-slider>
 
     <cp-colour-details [height]="selectHeight"
                        [width]="selectWidth"

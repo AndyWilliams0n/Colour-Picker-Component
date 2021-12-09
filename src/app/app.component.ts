@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent {
+    public hex = 'cc0000';
     public colour = '';
 
     public setColours(colour: any) {
