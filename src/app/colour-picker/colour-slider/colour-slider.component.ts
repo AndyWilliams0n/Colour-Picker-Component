@@ -52,14 +52,14 @@ export class ColourSliderComponent implements AfterViewInit {
 
         // Pointer
 
-        // if (this.selectedHeight) {
-        //     this.ctx.beginPath();
-        //     this.ctx.strokeStyle = 'black';
-        //     this.ctx.lineWidth = 5;
-        //     this.ctx.rect(0, this.selectedHeight - 5, this.width, 10);
-        //     this.ctx.stroke();
-        //     this.ctx.closePath();
-        // }
+        if (this.selectedHeight) {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = 'black';
+            this.ctx.lineWidth = 1;
+            this.ctx.rect(0, this.selectedHeight - 3, this.width, 5);
+            this.ctx.stroke();
+            this.ctx.closePath();
+        }
     }
 
     //

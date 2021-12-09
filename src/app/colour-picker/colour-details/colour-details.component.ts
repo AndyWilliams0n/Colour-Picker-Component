@@ -24,15 +24,27 @@ export class ColourDetailsComponent {
 
     //
 
+    setKeyHex(hex: string) {
+        if (this.coloursService.hex.length >= 6) {
+            this.coloursService.hasBeenEntered = true;
+            this.coloursService.hue = '';
+
+            setTimeout(() => {
+                this.coloursService.setPreselectedHex(hex);
+                this.colour.next();
+            }, 10);
+        }
+    }
+
+    //
+
     setHex(hex: string) {
+        this.coloursService.hasBeenEntered = true;
         this.coloursService.hue = '';
 
         setTimeout(() => {
             this.coloursService.setPreselectedHex(hex);
-
-            setTimeout(() => {
-                this.colour.next();
-            }, 10);
+            this.colour.next();
         }, 10);
     }
 }

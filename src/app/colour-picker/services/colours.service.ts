@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {SelectedColours} from '../models/colours.model';
-import {HexToRGB, RGBToArray} from '../functions/conversion.functions';
+import {HexToRGB, RGBToArray, RGBToHSL} from '../functions/conversion.functions';
 
 @Injectable()
 
@@ -14,6 +14,10 @@ export class ColoursService {
     public g = 0;
     public b = 0;
     public a = 1;
+
+    public h = 0;
+    public s = 0;
+    public l = 0;
 
     public preselectedColours: SelectedColours[] = [{
         name: 'pink',
@@ -106,12 +110,20 @@ export class ColoursService {
         hex: '000000',
         hasBorder: false
     }];
+    public hasBeenEntered = false;
 
     setPreselectedHex(hex: string) {
         this.hex = hex;
         this.rgb = HexToRGB(hex, false);
         this.rgba = HexToRGB(hex, true);
         this.splitRGB(this.rgba);
+        this.splitHSL(this.r, this.g, this.b);
+
+        this.hue = HexToRGB(hex, true);
+
+        // LOG
+        console.log(this.h, this.s, this.l);
+        console.log(this.hue);
     }
 
     splitRGB(rgba: string = '') {
@@ -121,5 +133,13 @@ export class ColoursService {
         this.g = parseInt(split[1]) || 0;
         this.b = parseInt(split[2]) || 0;
         this.a = parseInt(split[3]) || 0;
+    }
+
+    splitHSL(r: number = 0, g: number = 0, b: number = 0) {
+        const split = RGBToHSL(r, g, b);
+
+        this.h = split[0] || 0;
+        this.s = split[1] || 0;
+        this.l = split[2] || 0;
     }
 }

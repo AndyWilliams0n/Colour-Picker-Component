@@ -11,6 +11,7 @@ import {
     EventEmitter,
     ViewEncapsulation
 } from '@angular/core';
+import {ColoursService} from '../services/colours.service';
 
 @Component({
     selector: 'cp-colour-palette',
@@ -23,15 +24,24 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
     @Input() hue: string;
     @Input() width = 380;
     @Input() height = 380;
+
     @Output() colour: EventEmitter<string> = new EventEmitter(true);
+
     @ViewChild('colourPaletteCanvas') canvas: ElementRef<HTMLCanvasElement>;
 
     private ctx: CanvasRenderingContext2D;
     private mousedown = false;
+
     public selectedPosition: {
         x: number;
         y: number;
     };
+
+    //
+
+    constructor(
+        public coloursService: ColoursService
+    ) {}
 
     //
 
@@ -40,6 +50,15 @@ export class ColourPaletteComponent implements AfterViewInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
+        // LOG
+        console.log(changes);
+        console.log(this.selectedPosition);
+
+        if (this.coloursService.hasBeenEntered) {
+            this.selectedPosition = undefined;
+            this.coloursService.hasBeenEntered = false;
+        }
+
         if (changes['hue']) {
             this.draw();
 

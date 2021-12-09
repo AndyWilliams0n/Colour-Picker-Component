@@ -41,6 +41,9 @@ export class ColourPickerComponent {
 
     onChangesMadeToSlider(hue: string) {
         this.coloursService.hue = hue;
+
+        // LOG
+        console.log(hue);
     }
 
     onChangesMadeToDetails() {
